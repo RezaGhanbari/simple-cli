@@ -25,7 +25,7 @@ func main() {
 	countCommand := flag.NewFlagSet("count", flag.ExitOnError)
 	listCommand := flag.NewFlagSet("list", flag.ExitOnError)
 
-	// Count subcommand flag pointers
+	// Count sub command flag pointers
 	// Adding a new choice for --metric of 'substring' and a new --substring flag
 	countTextPtr := countCommand.String("text", "", "Text to parse. (Required)")
 	countMetricPtr := countCommand.String("metric", "chars", "Metric {chars|words|lines|substring}. (Required)")
@@ -37,23 +37,23 @@ func main() {
 	var countStringList stringList
 	countCommand.Var(&countStringList, "substringList", "A comma seperated list of substrings to be counted.")
 
-	// List subcommand flag pointers
+	// List sub command flag pointers
 	listTextPtr := listCommand.String("text", "", "Text to parse. (Required)")
 	listMetricPtr := listCommand.String("metric", "chars", "Metric <chars|words|lines>. (Required)")
 	listUniquePtr := listCommand.Bool("unique", false, "Measure unique values of a metric.")
 
-	// Verify that a subcommand has been provided
+	// Verify that a sub command has been provided
 	// os.Arg[0] is the main command
-	// os.Arg[1] will be the subcommand
+	// os.Arg[1] will be the sub command
 	if len(os.Args) < 2 {
-		fmt.Println("list or count subcommand is required")
+		fmt.Println("list or count sub command is required")
 		os.Exit(1)
 	}
 
-	// Switch on the subcommand
+	// Switch on the sub command
 	// Parse the flags for appropriate FlagSet
 	// FlagSet.Parse() requires a set of arguments to parse as input
-	// os.Args[2:] will be all arguments starting after the subcommand at os.Args[1]
+	// os.Args[2:] will be all arguments starting after the sub command at os.Args[1]
 	switch os.Args[1] {
 	case "list":
 		listCommand.Parse(os.Args[2:])
@@ -64,7 +64,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Check which subcommand was Parsed using the FlagSet.Parsed() function. Handle each case accordingly.
+	// Check which sub command was Parsed using the FlagSet.Parsed() function. Handle each case accordingly.
 	// FlagSet.Parse() will evaluate to false if no flags were parsed (i.e. the user did not provide any flags)
 	if listCommand.Parsed() {
 		// Required Flags
